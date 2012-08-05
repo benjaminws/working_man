@@ -14,10 +14,10 @@ Scenario: App just runs
     | run_type | which is required |
   
 Scenario: Start work successfully with app and url
-  Given a file named "/tmp/fakehome/.working_man.yml" with:
+  Given a file named ".working_man.yml" with:
     """
     apps:
-      - 'Twitter'
+      - 'test -d /tmp'
     urls:
       - 'http://www.google.com'
     """
@@ -26,19 +26,19 @@ Scenario: Start work successfully with app and url
   And the exit status should be 0
   
 Scenario: Start work successfully specifying a config file
-  Given a file named "/tmp/fakehome/dotfiles/working_man_config.yml" with:
+  Given a file named "dotfiles/working_man_config.yml" with:
     """
     apps:
-      - 'Twitter'
+      - 'test -d /tmp'
     urls:
       - 'http://www.google.com'
     """
-  When I run `working_man -f ~/dotfiles/working_man_config.yml start`
+  When I run `working_man -f dotfiles/working_man_config.yml start`
   Then the output should contain "Work hard today"
   And the exit status should be 0
 
 Scenario: Start work unsuccessfully without any apps
-  Given a file named "/tmp/fakehome/.working_man.yml" with:
+  Given a file named ".working_man.yml" with:
     """
     apps:
     urls:
@@ -49,13 +49,13 @@ Scenario: Start work unsuccessfully without any apps
   And the exit status should be 2
   
 Scenario: Start work unsuccessfully without a configuration
-  Given a file named "/tmp/fakehome/.working_man.yml" should not exist
+  Given a file named ".working_man.yml" should not exist
   When I run `working_man start`
   Then the output should contain "No configuration found."
   And the exit status should be 1
   
 Scenario: Stop work successfully
-  Given a file named "/tmp/fakehome/.working_man.yml" with:
+  Given a file named ".working_man.yml" with:
     """
     apps:
       - 'Twitter'

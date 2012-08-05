@@ -1,21 +1,16 @@
 module WorkingMan
   class Actions
+    @provider = Provider.new
     def self.close_applications apps
-      apps.each do |app_name|
-        `osascript -e "tell application \\"#{app_name}\\" to quit"`
-      end
+      @provider.close_applications apps
     end
 
     def self.launch_applications apps
-      apps.each do |app_name|
-        `open -a "#{app_name}.app"`
-      end
+      @provider.launch_applications apps
     end
 
     def self.open_urls urls
-      urls.each do |url|
-        `open #{url}`
-      end
+      @provider.open_urls urls
     end
   end
 end

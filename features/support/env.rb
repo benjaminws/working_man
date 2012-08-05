@@ -12,9 +12,8 @@ Before do
   
   # Setup fake home directory in /tmp/fakehome before tests
   @real_home = ENV['HOME']
-  ENV['HOME'] = '/tmp/fakehome'
-  FileUtils.rm_rf '/tmp/fakehome'
-  FileUtils.mkdir '/tmp/fakehome'
+  @new_home = "#{Dir.pwd}/#{@dirs[0]}"
+  ENV['HOME'] = @new_home
 end
 
 After do

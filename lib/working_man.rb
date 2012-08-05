@@ -1,5 +1,6 @@
 require "yaml"
 require "working_man/version"
+require "working_man/provider"
 require "working_man/actions"
 
 module WorkingMan
